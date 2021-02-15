@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'Forum.apps.ForumConfig',
     'TaskManager.apps.TaskmanagerConfig',
-
+    'Graph.apps.GraphConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
