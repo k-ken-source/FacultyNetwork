@@ -5,7 +5,7 @@ import urllib, base64
 from Graph.Qlearning import Deltas
 
 def Graph(request):
-	deltas, policy, update_counts, V = Deltas()
+	deltas, policy = Deltas()
 	plt.xlabel("iterations")
 	
 	plt.ylabel("Q-value at each iteration")
@@ -17,16 +17,10 @@ def Graph(request):
 	string = base64.b64encode(buf.read())
 	uri = urllib.parse.quote(string)
 	pn = len(policy)
-	un = len(update_counts)
-	vn = len(V)
 
 	return render(request,'Graph/graph.html',{'data':uri, 
 		'policy':policy,
-		'pn': range(pn),
-		'update_counts': update_counts,
-		'un': range(un), 
-		'V':V,
-		'vn':range(vn)
+		'pn': range(pn)
 		})
 
 

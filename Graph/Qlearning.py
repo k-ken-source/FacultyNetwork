@@ -33,7 +33,7 @@ def Deltas():
             # repeat until convergence
     t = 1.0
     deltas = []
-    for it in range(100):
+    for it in range(1000):
         if it % 10 == 0:
             t += 1e-2
         #if it % 100 == 0:
@@ -100,16 +100,12 @@ def Deltas():
 # everything below this is policy and other things 
 
     policy = []
-    V = []
+
     for s in range(20):
         a, max_q = max_dict(Q[s])
         policy.append(a)
-        V.append(abs(max_q))
-
     # what's the proportion of time we spend updating each part of Q?
 
-    total = np.sum(list(update_counts.values()))
-    for k, v in update_counts.items():
-        update_counts[k] = float(v) / total
 
-    return (deltas, policy, update_counts, V)
+
+    return (deltas, policy)
