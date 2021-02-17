@@ -21,7 +21,7 @@ def Deltas():
         Q[s] = {}
         for a in ALL_POSSIBLE_ACTIONS:
             Q[s][a] = 0
-    print(states)
+    #print(states)
 
     update_counts = {}
     update_counts_sa = {}
@@ -33,11 +33,11 @@ def Deltas():
             # repeat until convergence
     t = 1.0
     deltas = []
-    for it in range(1000):
+    for it in range(100):
         if it % 10 == 0:
             t += 1e-2
-        if it % 100 == 0:
-            print("it:", it)
+        #if it % 100 == 0:
+        #   print("it:", it)
 
         s = 0
         teach.points = 0
@@ -97,14 +97,6 @@ def Deltas():
 
         deltas.append(biggest_change)
 
-    return deltas
-'''
-    print("deltas",deltas)
-    plt.xlabel("iterations")
-    plt.ylabel("Q-value at each iteration")
-    plt.plot(deltas)
-    plt.show()
-
 # everything below this is policy and other things 
 
     policy = []
@@ -115,17 +107,9 @@ def Deltas():
         V.append(abs(max_q))
 
     # what's the proportion of time we spend updating each part of Q?
-    print("update counts:")
+
     total = np.sum(list(update_counts.values()))
     for k, v in update_counts.items():
         update_counts[k] = float(v) / total
-    print_values(update_counts, teach)
-    print("\n")
 
-    print("values:")
-    print_values(V, teach)
-    print("\n")
-    print("policy:")
-    print_policy(policy, teach)
-    print("\n")
-'''
+    return (deltas, policy, update_counts, V)

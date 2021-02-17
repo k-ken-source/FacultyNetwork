@@ -1,9 +1,59 @@
 {% extends "blog/base.html" %}
 {% block content %}	
-	
-	<h2>Q-Learning Algorithm Result</h2>
+{% load index %}
+	<div>
+		<p>
+			<h2>Q-Learning Algorithm Result</h2>
 
-	<img src="data:image/png;base64,{{data}}" alt = "Q-Learning Graph" height="450",width="450">
+
+			<img src="data:image/png;base64,{{data}}" alt = "Q-Learning Graph" height="450",width="450">
+		</p>
+		
+		
+	</div>
 	
+	
+	<div>
+		<div >
+			<p>
+				<h4>Policy : </h4> 
+
+				<h6>
+					{% for i in  pn %}
+						{{i}} {{ policy|Find:i }}|
+						
+					
+					{% endfor%}
+				</h6>
+			</p>
+		</div>
+
+		<div >
+			<p>
+				<h4>Update Counts : </h4> 
+				<h6>
+					{% for i in  un %}
+						{{i}} {{ update_counts|Find:i }}|
+						
+					
+					{% endfor%}
+				</h6>
+			</p>
+		</div>
+
+		<div >
+			<p>
+				<h4>Values : </h4> 
+				<h6>	
+					{% for i in  vn %}
+						{{i}} {{ V|Find:i }}|
+						
+					
+					{% endfor%}
+				</h6>	
+			</p>
+		</div>
+
+	</div>
 
 {% endblock content %}
